@@ -18,6 +18,8 @@ def UCB_agent(state,c):
     r_s =  c * ((jnp.log(state[0]) / state[1]) ** 0.5)
     return (state[2] + r_s).argmax()
 
+
+
       
 
 
