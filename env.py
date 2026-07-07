@@ -12,12 +12,12 @@ import jax.numpy as jnp
 
 #state is (t,N,Q,key)
 
-def k_slots(fn,state, t_r):
+def k_slots(policy,state, t_r):
     t = state[0]
     N = state[1]
     Q = state[2]
     #Selecting k-arm
-    s_m = fn(state)
+    s_m = policy
 
     #Reward 
     key, k1 = jax.random.split(state[3])
