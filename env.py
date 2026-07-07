@@ -10,10 +10,9 @@ import jax.numpy as jnp
 # 
 # Environment owns 3 things. True rewards, probabilities, and step function
 
-mu = jnp.array([-1.0, -0.5, 0.0, 0.3, 0.6, 0.9, 1.2, 1.0, 0.4, -0.8])
 #state is (t,N,Q,key)
 
-def step_slot(fn,state, t_r):
+def k_slots(fn,state, t_r):
     t = state[0]
     N = state[1]
     Q = state[2]
@@ -32,7 +31,7 @@ def step_slot(fn,state, t_r):
     t = t+1
 
 
-    return (t, N, Q, key)
+    return (t, N, Q, key),N
 
 
 
