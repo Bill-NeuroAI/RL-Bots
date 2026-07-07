@@ -3,7 +3,6 @@
 # %%
 import jax
 import jax.numpy as jnp
-import k_armed_bandits.env as env
 
 #state is a tuple with (t,N,Q,key)
 
