@@ -1,3 +1,4 @@
 # Ignore Python byte-compiled/optimized files
 __pycache__/
 *.pyc
+.vscode/
