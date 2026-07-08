@@ -35,7 +35,8 @@ State representation was (t, N(a), Q(a), key)
 
 - key = key for jax rng 
 
-
+---
+## Functions
 ### pick_every_lever
 Rather than hard coding levers, I chose to go the textbook route 
 
@@ -49,6 +50,13 @@ Implemented an UCB agent
 Predicted optimal path with optional amount of exploration, through c 
 
 Returned single integer as choice 
+
+## K-Slots
+Hardcoded to have 10 slot machines that are predetermined 
+
+Would take in policy, state, and true_mu
+
+Gave back new state and also N(a). N(a) was given so later on with jax.lax.scan it could be tracked
 
 ## Conclusion
 
