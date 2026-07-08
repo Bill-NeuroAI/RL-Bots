@@ -4,8 +4,8 @@ import jax.numpy as jnp
 #policy is column index of choice, state integer representation of position: 0 - 8.
 # policy is 0 -3. up, down, left, right
 
-#Responsible for taking steps. If out of bounds 
-def state_step(state, policy):
+#Responsible for taking steps. If out of bounds, sends back 
+def gridworld(state, policy):
     #Converting int state to (x,y) state
     y = jnp.floor(state/3)
     x = state%3
@@ -35,20 +35,12 @@ def state_step(state, policy):
     if(y < 0):
         y = 0
 
-    #returns new state
-    return  (x + (y*3))
-
-
-
-def reward_function(state):
-    reward = -1
+    state = (x + (y*3))
     if (state == 8):
-        return 100, True
+        reward = 100
+        return state, 100
     elif (state == 4):
-        return -100, True
+        reward = -100
+        return state, -100
     else:
-        return -1, False
-
-
-
-
+        return state, -1

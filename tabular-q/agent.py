@@ -1,7 +1,8 @@
 import jax 
 import jax.numpy as jnp
+state = 0
 
-def agent_updater(old_state, policy, reward, new_state,Q_table):
+def agent_updater(old_state, policy, reward, new_state,Q_table, gamma, alpha):
     #this is an inplace replacement so i would need to use at[] and set()
     n_q = ((1-alpha)*Q_table[old_state][policy]) + (alpha* (reward + (gamma*jnp.max(Q_table[new_state]))))
     Q_table = Q_table.at[old_state,policy].set(n_q)
