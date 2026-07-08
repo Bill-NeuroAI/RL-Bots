@@ -7,40 +7,20 @@ import jax.numpy as jnp
 #Responsible for taking steps. If out of bounds, sends back 
 def gridworld(state, policy):
     #Converting int state to (x,y) state
-    y = jnp.floor(state/3)
+    y = state//3
     x = state%3
+    dx = jnp.array([0,0,1,-1])
+    dy = jnp.array([1,-1,0,0])
 
-    #checks policy and acts accordingly
-    match policy:
-        #up
-        case 0:
-            y = y + 1
-        #down
-        case 1:
-            y = y - 1
-        #left
-        case 2:
-            x = x - 1
-        #right
-        case 3:
-            x = x + 1
-    
-    #checking for out of bounds
-    if (x > 2):
-        x = 2
-    if (y > 2):
-        y = 2
-    if(x < 0):
-        x = 0
-    if(y < 0):
-        y = 0
+    x = x+dx[policy]
+    y = y+dy[policy]
+
+    x = jnp.clip(x,0,2)
+    y = jnp.clip(y,0,2)
 
     state = (x + (y*3))
-    if (state == 8):
-        reward = 100
-        return state, 100
-    elif (state == 4):
-        reward = -100
-        return state, -100
-    else:
-        return state, -1
+
+    conditions = [state == 8, state ==4]
+    rewards = [100, -100]
+    reward = jnp.select(conditions, rewards, default=-1)
+    return state, reward
