@@ -2,12 +2,15 @@
 
 
 ## Overview
-Implemented stationary stochastic K-bandits using Jax library. Explored basic exploration, exploitation dynamics 
+Implemented stationary stochastic K-bandits using Jax library. Explored  exploration, exploitation dynamics, and how fast reinforcement learning agents learn
 
 ### Goal
 action - value estimation
+
 exploration vs. exploitation
+
 stochastic reward environments
+
 functional state updates in jax + vmap
 
 ---
