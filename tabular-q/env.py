@@ -1,15 +1,16 @@
-# %%
 import jax 
 import jax.numpy as jnp
 
-# %%
 #policy is column index of choice, state integer representation of position: 0 - 8.
 # policy is 0 -3. up, down, left, right
-def grid_world(state, policy):
+
+#Responsible for taking steps. If out of bounds 
+def state_step(state, policy):
+    #Converting int state to (x,y) state
     y = jnp.floor(state/3)
     x = state%3
-    #reward remains normal, even in out of bounds cases
-    reward = -1
+
+    #checks policy and acts accordingly
     match policy:
         #up
         case 0:
@@ -34,17 +35,19 @@ def grid_world(state, policy):
     if(y < 0):
         y = 0
 
-    if ((x==2) and (y == 1)):
-        done = True
-        reward = -10
-    if ((x == 2) and (y==2)):
-        done = True
-        reward = 10
-
-    state = (x + (y*3))
+    #returns new state
+    return  (x + (y*3))
 
 
-    return state, reward
+
+def reward_function(state):
+    reward = -1
+    if (state == 8):
+        return 100, True
+    elif (state == 4):
+        return -100, True
+    else:
+        return -1, False
 
 
 

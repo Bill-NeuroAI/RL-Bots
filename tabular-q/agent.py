@@ -1,17 +1,5 @@
-# %%
 import jax 
 import jax.numpy as jnp
-
-
-# %%
-#Initializing Q table
-Q_table = jnp.zeros((9,4))
-#starting state
-state = 1
-
-gamma = 0.5
-alpha = 0.3
-
 
 def agent_updater(old_state, policy, reward, new_state,Q_table):
     #this is an inplace replacement so i would need to use at[] and set()
@@ -23,7 +11,7 @@ def epsilon_greedy(state, Q_table, epsilon, key):
     if(jax.random.bernoulli(key) > epsilon):
         return Q_table[state].argmax()
     else:
-        return jax.random.randint(key, [], 0, 3)
+        return jax.random.randint(key, (1), 0, 3)
 
 
 
